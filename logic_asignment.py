@@ -3,7 +3,7 @@ import numpy as np
 import random
 import venv
 
-def asignacion_personas(personas):
+def asignment(personas):
     # Diccionario para almacenar las asignaciones
     asignacion = {}
 
