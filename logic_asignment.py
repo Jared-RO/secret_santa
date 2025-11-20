@@ -7,7 +7,7 @@ def asignment(personas):
     # Diccionario para almacenar las asignaciones
     asignacion = {}
 
-    # Convertir las claves del diccionario a una lista y mezclarla
+    # Convertir las claves del diccionario a una lista y meclarla
     nombres_rand = list(personas.keys())
     random.shuffle(nombres_rand)
 
