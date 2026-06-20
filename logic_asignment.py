@@ -1,23 +1,20 @@
-import pandas as pd
-import numpy as np
-import random
-import venv
+import random as rdom
 
-
-def asignment(personas):
+def asignment(people: dict) -> dict:
+    '''Función para asignar a cada persona otra persona aleatoria para regalar.'''
     # Diccionario para almacenar las asignaciones
     asignacion = {}
 
     # Convertir las claves del diccionario a una lista y meclarla
-    nombres_rand = list(personas.keys())
-    random.shuffle(nombres_rand)
+    nombres_rand = list(people.keys())
+    rdom.shuffle(nombres_rand)
 
     # Asignar a cada persona otra persona aleatoria
-    for persona_a in personas.keys():
+    for persona_a in people.keys():
         n = len(nombres_rand)
         persona_b = nombres_rand[n - 1]
         while persona_b == persona_a:
-            random.shuffle(nombres_rand)
+            rdom.shuffle(nombres_rand)
             persona_b = nombres_rand[n - 1]
         asignacion[persona_a] = persona_b
         nombres_rand.remove(persona_b)

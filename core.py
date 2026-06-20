@@ -1,10 +1,10 @@
-import venv
 import bring_users as bu
 import logic_asignment as la
 import email_send as es
 
 
 def run_secret_santa():
+    """Función principal para ejecutar el proceso de Secret Santa."""
     # Obtener las personas desde el archivo CSV
     personas = bu.input_users()
     print("Users imported successfully!")
