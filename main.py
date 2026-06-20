@@ -1,9 +1,9 @@
-import bring_users as bu
-import logic_asignment as la
-import email_send as es
+import secret_santa_logic.bring_users as bu
+import secret_santa_logic.email_send as es
+import secret_santa_logic.logic_asignment as la
 
 
-def run_secret_santa():
+def run_secret_santa() -> dict[str, str]:
     """Función principal para ejecutar el proceso de Secret Santa."""
     # Obtener las personas desde el archivo CSV
     personas = bu.input_users()

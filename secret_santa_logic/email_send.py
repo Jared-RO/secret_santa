@@ -1,13 +1,14 @@
+import os
 import smtplib
 from email.message import EmailMessage
-import venv
-import bring_users as bu
-import logic_asignment as la
+
 from dotenv import load_dotenv
-import os
+
+import secret_santa_logic.bring_users as bu
+import secret_santa_logic.logic_asignment as la
 
 
-def send_email(asignacion, personas):
+def send_email(asignacion: dict[str, str], personas: dict[str, str]) -> None:
     load_dotenv()
     for persona_a in personas.keys():
         # Crear el mensaje
@@ -16,7 +17,7 @@ def send_email(asignacion, personas):
         msg["From"] = os.getenv("EMAIL_USER")  # cambiar por correo de la aplicacion
         msg["To"] = personas[persona_a]
         msg.set_content(
-            f"Hola {persona_a}!\nTe ha tocado regalar a {asignacion[persona_a]}. \n\n¡Feliz Navidad!"
+            f"Hola {persona_a}\nTe ha tocado regalar a {asignacion[persona_a]}.\n\n¡Feliz Navidad!"
         )
 
         # Enviar el mensaje usando SMTP de Gmail
@@ -29,9 +30,9 @@ def send_email(asignacion, personas):
 
 if __name__ == "__main__":
     # Obtener las personas desde el archivo CSV
-    personas = bu.input_users()
+    p = bu.input_users()
     # Realizar la asignación de personas
-    asignacion = la.asignment(personas)
+    a = la.asignment(p)
 
     # Enviar los correos electrónicos con las asignaciones
-    send_email(asignacion, personas)
+    send_email(a, p)

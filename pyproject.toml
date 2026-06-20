@@ -1,0 +1,96 @@
+[build-system]
+#minimun requierments fot the build system to work
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.package-data]
+package_demo = ["*.csv"]
+
+[project]
+name = "secret_santa_logic"
+description = "A package for assigning Secret Santa partners"
+dynamic = ["version"]
+authors = [{ name = "Jared RO", email = "jjared.ro@gmail.com" }]
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+classifiers = ["Programming Language :: Python :: 3.11"]
+dependencies = [
+    "pandas==2.3.3",
+    "secure-smtplib==0.1.1",
+    "python-dotenv==1.2.1",
+    # "importlib-metadata"
+]
+
+#///// Configuration for testing and building the package
+[tool.pytest.ini_options]
+markers = ["quick_test: mark a test as a quick test to run only those tests"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+release = ["build", "wheel", "twine"]
+static-code-analysis = ["pre-commit", "black", "mypy", "pylint", "isort"]
+dev = ["secret_santa_logic[test,release,static-code-analysis]"]
+
+[tool.setuptools.dynamic]
+version = { file = "version.txt" }
+
+# //// Configuration for code formatting, linting, and type checking
+[black]
+line-length = 110
+exclude = ["venv"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = "VERTICAL_HANGING_INDENT"
+force_grid_wrap = 2
+line_length = 99
+
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+
+
+[tool.pylint.'MASTER']
+ignore = "venv,migrations"
+extension-pkg-whitelist = ""
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = "C0114,C0115,C0116,E0015,E0602,C0303,C0103"
+
+[tool.pylint.'REPORTS']
+reports = "no"
+
+[tool.pylint.'FORMAT']
+max-line-length = "100"
+
+[tool.pylint.'DESIGN']
+max-args = "5"
+max-attributes = "10"
+
+[tool.pylint.'IMPORTS']
+allow-relative-imports = "yes"
+
+[tool.pylint.'NAMING']
+variable-rgx = "[a-z_][a-z0-9_]{0,30}$"
+function-rgx = "[a-z_][a-z0-9_]{0,30}$"
+class-rgx = "[A-Z][a-zA-Z0-9]+$"
+
+[tool.pylint."messages control"]
+disable = [
+    "line-too-long",
+    "trailing-whitespace",
+    "missing-function-docstring",
+    "consider-using-f-string",
+    "import-error",
+    "too-few-public-methods",
+    "redefined-outer-name",
+]

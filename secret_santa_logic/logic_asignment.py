@@ -1,9 +1,10 @@
 import random as rdom
 
-def asignment(people: dict) -> dict:
-    '''Función para asignar a cada persona otra persona aleatoria para regalar.'''
+
+def asignment(people: dict[str, str]) -> dict[str, str]:
+    """Función para asignar a cada persona otra persona aleatoria para regalar."""
     # Diccionario para almacenar las asignaciones
-    asignacion = {}
+    asignacion: dict[str, str] = {}
 
     # Convertir las claves del diccionario a una lista y meclarla
     nombres_rand = list(people.keys())
