@@ -35,20 +35,41 @@ function clean {
 
 
 function publish:test {
-    try-load-dotenv || true
     twine upload dist/* \
     --repository testpypi \
     --username __token__ \
     --password "$TESTPYPI_API_TOKEN" --verbose
 }
 
-function release {
+function release:test {
     install
     clean
     code_checks
     build
+    publish:test
 }
 
+function try-load-dotenv {
+    [ -f "$THIS_DIR/.env" ] && echo "✅ .env file found" || { echo "❌ no .env file found"; return 1; }
+    while read -r line; do
+        export "$line"
+    done < <( grep -v '^#' "$THIS_DIR/.env" |grep -v '^$' )
+}
+
+function publish:test {
+    try-load-dotenv || true
+    twine upload dist/* \
+    --repository testpypi \
+    --username __token__ \
+    --password "$TESTPYPI_API_TOKEN" --verbose
+}
+function publish:prod {
+    try-load-dotenv || true
+    twine upload dist/* \
+    --repository pypi \
+    --username __token__ \
+    --password "$PYPI_API_TOKEN" --verbose
+}
 
 TIMEFORMAT="Task completed in %3lR"
 time ${@:-help}
