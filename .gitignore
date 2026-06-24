@@ -3,6 +3,7 @@ build
 dist
 *.egg-info
 .mypy_cache
+.env
 *.env
 *env
 __pycache__
