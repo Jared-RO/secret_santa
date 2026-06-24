@@ -23,7 +23,7 @@ jobs:
     - name: Formating & Analysing the code
       run: |
         pip install pre-commit
-        /bin/bash -x run.sh code_checks:ci
+        /bin/bash -x run.sh code_checks
 
   dump_contexts_to_log:
     runs-on: ubuntu-latest
