@@ -1,6 +1,6 @@
 # Secret Santa 🎁
 
-¡Bienvenido al Generador de Secret Santa! Esta es una aplicación web interactiva desarrollada con **Streamlit** y **Python** que automatiza por completo el sorteo de tu amigo secreto. 
+¡Bienvenido al Generador de Secret Santa! Esta es una aplicación web interactiva desarrollada con **Streamlit** y **Python** que automatiza por completo el sorteo de tu amigo secreto.
 
 A diferencia de las versiones tradicionales por terminal, esta aplicación se ejecuta directamente desde el navegador web, elimina la necesidad de gestionar archivos CSV manuales y envía los resultados de forma instantánea y confidencial a través del correo electrónico de cada participante.
 
