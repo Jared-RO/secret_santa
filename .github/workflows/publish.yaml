@@ -1,0 +1,57 @@
+name: checks-before-merge
+
+on:
+  pull_request:
+      types: [opened, synchronize]
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+
+  code-check-quality:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.13
+    - name: Formating & Analysing the code
+      run: |
+        pip install pre-commit
+        /bin/bash -x run.sh code_checks
+
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Dumping github contexts to log
+      id: github-contexts-step
+      run: echo '${{ toJson(github) }}'
+    - name: Dumping env contexts to log
+      id: env-contexts-step
+      run: echo '${{ toJson(env) }}'
+    - name: Dumping job contexts to log
+      id: job-contexts-step
+      run: echo '${{ toJson(job) }}'
+    - name: Dumping steps contexts to log
+      id: steps-contexts-step
+      run: echo '${{ toJson(steps) }}'
+    - name : Dumping runner contexts to log
+      id: runner-contexts-step
+      run: echo '${{ toJson(runner) }}'
+    - name: Dumping strategy contexts to log
+      id: strategy-contexts-step
+      run: echo '${{ toJson(strategy) }}'
+    - name: Dumping matrix contexts to log
+      id: matrix-contexts-step
+      run: echo '${{ toJson(matrix) }}'
+    - name: Dumping secrets contexts to log
+      id: secrets-contexts-step
+      run: echo '${{ toJson(secrets) }}'
+    - name: Dumping inputs contexts to log
+      id: inputs-contexts-step
+      run: echo '${{ toJson(inputs) }}'
