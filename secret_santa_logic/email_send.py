@@ -10,21 +10,27 @@ import secret_santa_logic.logic_asignment as la
 
 def send_email(asignacion: dict[str, str], personas: dict[str, str]) -> None:
     load_dotenv()
-    for persona_a in personas.keys():
-        # Crear el mensaje
-        msg = EmailMessage()
-        msg["Subject"] = "Secret Santa!!"
-        msg["From"] = os.getenv("EMAIL_USER")  # cambiar por correo de la aplicacion
-        msg["To"] = personas[persona_a]
-        msg.set_content(
-            f"Hola {persona_a}\nTe ha tocado regalar a {asignacion[persona_a]}.\n\n¡Feliz Navidad!"
-        )
 
-        # Enviar el mensaje usando SMTP de Gmail
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(
-                os.getenv("EMAIL_USER"), os.getenv("EMAIL_PASS")
-            )  # cambiar por correo y contraseña de la aplicacion
+    email_user = os.getenv("EMAIL_USER")
+    email_pass = os.getenv("EMAIL_PASS")
+
+    # 1. Abrimos la conexión con Gmail UNA SOLA VEZ fuera del ciclo
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(email_user, email_pass)
+
+        # 2. Iteramos sobre los participantes para armar y mandar cada correo
+        for persona_a in personas.keys():
+            msg = EmailMessage()
+            msg["Subject"] = "🎄 ¡Tu Amigo Secreto de Secret Santa! 🎄"
+            msg["From"] = email_user
+            msg["To"] = personas[persona_a]
+            msg.set_content(
+                f"Hola {persona_a},\n\n"
+                f"Te ha tocado regalar a: {asignacion[persona_a]}.\n\n"
+                f"¡Mucho éxito con el regalo y Feliz Navidad! 🎅🎁"
+            )
+
+            # Enviar usando la conexión ya abierta
             smtp.send_message(msg)
 
 
