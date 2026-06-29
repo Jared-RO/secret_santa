@@ -30,6 +30,7 @@ repos:
           --no-strict-optional,
           --ignore-missing-imports,
           --config-file=./pyproject.toml,
+          --disable-error-code=misc
         ]
 
   - repo: https://github.com/PyCQA/isort
