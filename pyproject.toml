@@ -19,7 +19,15 @@ dependencies = [
     "pandas==2.3.3",
     "secure-smtplib==0.1.1",
     "python-dotenv==1.2.1",
-    # "importlib-metadata"
+    "fastapi==0.122.0",
+    "uvicorn==0.38.0",
+    "pydantic==2.12.5",
+    "python-dotenv==1.2.1",
+    "python-multipart==0.0.20",
+    "email-validator==2.3.0",
+    "secure-smtplib==0.1.1",
+    # Tu dependencia externa desde GitHub
+    "secret_santa_logic @ git+https://github.com/Jared-RO/secret_santa.git@e72219524e9fa70ec076a3e584e37e2046b60c49",
 ]
 
 #///// Configuration for testing and building the package

@@ -1,0 +1,26 @@
+# Entornos virtuales (No los queremos en Docker, Docker creará su propio entorno)
+*venv
+*env
+.venv
+env/
+
+# Archivos de configuración local y compilación
+build/
+dist/
+*.egg-info/
+.mypy_cache/
+.vscode/
+
+# Variables de entorno (CRÍTICO: Render las manejará desde su panel, no deben ir en la imagen)
+.env
+*.env
+
+# Archivos de caché de Python (Hacen que la imagen pese más sin sentido)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Historial de Git (Docker no necesita la carpeta .git para correr la app, solo pesa)
+.git
+.gitignore
