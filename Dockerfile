@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # 5. Copiamos el archivo de configuración del proyecto
 COPY pyproject.toml .
 # Si tienes un README.md vacío o con texto, cópialo también porque lo pide el toml
-COPY README.md* . 
+COPY README.md* .
 
 # 6. Actualizamos pip e instalamos las dependencias definidas en el pyproject.toml
 RUN pip install --no-cache-dir --upgrade pip \
