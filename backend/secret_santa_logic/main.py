@@ -1,3 +1,5 @@
+import os
+
 from fastapi import (
     BackgroundTasks,
     FastAPI,
@@ -12,14 +14,21 @@ from secret_santa_logic.schemas import (
 )
 
 app = FastAPI(title="Secret Santa API")
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
+origins = [origin.strip() for origin in allowed_origins_env.split(",")]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/")
+async def root() -> dict[str, str]:
+    return {"message": "Bienvenido a la API de Secret Santa!"}
 
 
 @app.post("/api/secret-santa", response_model=AsignacionResponse)
