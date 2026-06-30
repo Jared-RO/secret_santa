@@ -7,7 +7,7 @@ repos:
       - id: check-yaml #checks yaml files for parseable syntax
       - id: check-added-large-files #prevents large files from being added to git
       - id: no-commit-to-branch #prevents committing to specified branches
-        args: [--branch, main, --branch, master]
+        args: [--branch, main, --branch, master, --branch, prod]
         stages: [push] #only run this hook on push events
 
   - repo: https://github.com/psf/black
