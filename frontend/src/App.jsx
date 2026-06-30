@@ -14,6 +14,16 @@ function App() {
   const [error, setError] = useState('');
   const [exito, setExito] = useState(false);
 
+  // ==========================================
+  // CONFIGURACIÓN AUTOMÁTICA LOCAL vs RENDER
+  // ==========================================
+  // Detecta automáticamente si la app corre en producción o en tu máquina
+  const isProduction = process.env.NODE_ENV === 'production' || import.meta.env?.PROD;
+
+  const API_BASE_URL = isProduction
+    ? 'https://secret-santa-backend-05ei.onrender.com'  // <-- PEGA AQUÍ TU URL REAL DE RENDER (la de arriba a la izquierda)
+    : 'http://localhost:8000';
+
   // Función para actualizar los campos de texto dinámicamente
   const handleInputChange = (index, event) => {
     const { name, value } = event.target;
@@ -60,7 +70,7 @@ function App() {
 
     try {
       // Petición HTTP POST al backend de FastAPI local
-      const response = await fetch('http://localhost:8000/api/secret-santa', {
+      const response = await fetch(`${API_BASE_URL}/api/secret-santa`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

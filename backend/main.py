@@ -14,7 +14,9 @@ from secret_santa_logic.schemas import (
 )
 
 app = FastAPI(title="Secret Santa API")
-allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000")
+allowed_origins_env = os.getenv(
+    "ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173"
+)
 origins = [origin.strip() for origin in allowed_origins_env.split(",")]
 
 app.add_middleware(
