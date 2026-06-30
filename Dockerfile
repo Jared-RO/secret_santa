@@ -23,7 +23,7 @@ RUN pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir .
 
 # 7. Copiamos el resto del código fuente del backend
-COPY . .
+COPY backend/ .
 
 # 8. Exponer puerto (informativo)
 EXPOSE 8000
