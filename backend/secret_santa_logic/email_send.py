@@ -8,9 +8,10 @@ from urllib.error import (
 
 import secret_santa_logic.bring_users as bu
 import secret_santa_logic.logic_asignment as la
-from dotenv import load_dotenv
 
-load_dotenv()
+# from dotenv import load_dotenv
+
+# load_dotenv()
 
 
 def send_email(asignacion: dict[str, str], personas: dict[str, str]) -> None:
