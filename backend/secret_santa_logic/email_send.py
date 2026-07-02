@@ -21,7 +21,7 @@ def send_email(asignacion: dict[str, str], personas: dict[str, str]) -> None:
         return
 
     # 2. El remitente DEBE ser el correo único que verificaste en SendGrid
-    from_email = "tu_correo_verificado_en_sendgrid@gmail.com"
+    from_email = "jjared.ro@gmail.com"
 
     # URL oficial de la API de SendGrid
     url = "https://api.sendgrid.com/v3/mail/send"
