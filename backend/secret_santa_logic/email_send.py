@@ -77,8 +77,6 @@ def send_email(asignacion: dict[str, str], personas: dict[str, str]) -> None:
         except HTTPError as e:
             error_body = e.read().decode("utf-8")
             print(f"❌ Error de SendGrid para {persona_a} ({e.code}): {error_body}")
-
-        # CAMBIA TU ÚLTIMO BLOQUE POR ESTE:
         except URLError as e:
             print(f"❌ Error de red/conexión enviando a {persona_a}: {e.reason}")
 
