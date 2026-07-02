@@ -19,6 +19,7 @@ function App() {
   // ==========================================
   // Detecta automáticamente si la app corre en producción o en tu máquina
   const isProduction = process.env.NODE_ENV === 'production' || import.meta.env?.PROD;
+  // const isProduction = true; // <-- Cambia a true para producción, false para desarrollo local
 
   const API_BASE_URL = isProduction
     ? 'https://secret-santa-backend-05ei.onrender.com'  // <-- PEGA AQUÍ TU URL REAL DE RENDER (la de arriba a la izquierda)
